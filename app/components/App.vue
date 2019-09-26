@@ -1,36 +1,36 @@
 <template>
     <Page>
-        <ActionBar title="Time Manager"/>
+        <ActionBar class="ActionBar" title="Time Manager"></ActionBar>
         <FlexboxLayout class="page">
             <StackLayout class="form">
-                <Image class="logo" src="~/assets/images/logotham.png" />
+                <Image class="logo" src="~/assets/images/logotham.png"></Image>
 
                 <StackLayout class="input-field" marginBottom="25">
                     <TextField class="input" hint="Email" keyboardType="email" autocorrect="false" autocapitalizationType="none" v-model="user.email"
-                               returnKeyType="next" @returnPress="focusPassword" fontSize="18" />
-                    <StackLayout class="hr-light" />
+                               returnKeyType="next" @returnPress="focusPassword" fontSize="18"></TextField>
+                    <StackLayout class="hr-light"></StackLayout>
                 </StackLayout>
 
                 <StackLayout class="input-field" marginBottom="25">
                     <TextField ref="password" class="input" hint="Password" secure="true" v-model="user.password" :returnKeyType="isLoggingIn ? 'done' : 'next'"
-                               @returnPress="focusConfirmPassword" fontSize="18" />
-                    <StackLayout class="hr-light" />
+                               @returnPress="focusConfirmPassword" fontSize="18"></TextField>
+                    <StackLayout class="hr-light"></StackLayout>
                 </StackLayout>
 
                 <StackLayout v-show="!isLoggingIn" class="input-field">
                     <TextField ref="confirmPassword" class="input" hint="Confirm password" secure="true" v-model="user.confirmPassword" returnKeyType="done"
-                               fontSize="18" />
-                    <StackLayout class="hr-light" />
+                               fontSize="18"></TextField>
+                    <StackLayout class="hr-light"></StackLayout>
                 </StackLayout>
 
-                <Button :text="isLoggingIn ? 'Log In' : 'Sign Up'" @tap="submit" class="btn btn-primary m-t-20" />
-                <Label v-show="isLoggingIn" text="Forgot your password?" class="login-label" @tap="forgotPassword" />
+                <Button :text="isLoggingIn ? 'Log In' : 'Sign Up'" @tap="submit" class="btn btn-primary m-t-20"></Button>
+                <Label v-show="isLoggingIn" text="Forgot your password?" class="login-label" @tap="forgotPassword"></Label>
             </StackLayout>
 
             <Label class="login-label sign-up-label" @tap="toggleForm">
                 <FormattedString>
-                    <Span :text="isLoggingIn ? 'Don’t have an account? ' : 'Back to Login'" />
-                    <Span :text="isLoggingIn ? 'Sign up' : ''" class="bold" />
+                    <Span :text="isLoggingIn ? 'Don’t have an account? ' : 'Back to Login'"></Span>
+                    <Span :text="isLoggingIn ? 'Sign up' : ''" class="bold"></Span>
                 </FormattedString>
             </Label>
         </FlexboxLayout>
@@ -55,7 +55,7 @@
     const HomePage = {
         template: `
 <Page>
-	<Label class="m-20" textWrap="true" text="You have successfully authenticated. This is where you build your core application functionality."></Label>
+	<Label class="m-20" textWrap="true" text="Ici il va falloir clock in et clock out"></Label>
 </Page>
 `
     };
@@ -166,6 +166,9 @@
 </script>
 
 <style scoped>
+    .ActionBar{
+        background-color: #F9D342;
+    }
     .page {
         align-items: center;
         flex-direction: column;
