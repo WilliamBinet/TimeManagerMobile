@@ -38,7 +38,6 @@
 </template>
 
 <script>
-    // A stub for a service that authenticates users.
     const userService = {
         register(user) {
             return Promise.resolve(user);
@@ -51,7 +50,6 @@
         }
     };
 
-    // A stub for the main page of your app. In a real app you’d put this page in its own .vue file.
     const HomePage = {
         template: `
 <Page>
