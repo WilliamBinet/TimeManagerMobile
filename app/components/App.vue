@@ -38,6 +38,8 @@
 </template>
 
 <script>
+    import Clock from "./Clock";
+
     const userService = {
         register(user) {
             return Promise.resolve(user);
@@ -48,14 +50,6 @@
         resetPassword(email) {
             return Promise.resolve(email);
         }
-    };
-
-    const HomePage = {
-        template: `
-<Page>
-	<Label class="m-20" textWrap="true" text="Ici il va falloir clock in et clock out"></Label>
-</Page>
-`
     };
 
     export default {
@@ -90,7 +84,7 @@
                 userService
                     .login(this.user)
                     .then(() => {
-                        this.$navigateTo(HomePage);
+                        this.$navigateTo(Clock);
                     })
                     .catch(() => {
                         this.alert("Unfortunately we could not find your account.");
