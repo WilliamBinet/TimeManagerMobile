@@ -23,7 +23,7 @@
                     <StackLayout class="hr-light"></StackLayout>
                 </StackLayout>
 
-                <Button :text="isLoggingIn ? 'Log In' : 'Sign Up'" @tap="submit" class="btn btn-primary m-t-20"></Button>
+                <Button :text="isLoggingIn ? 'Log In' : 'Sign Up'" @tap="created" class="btn btn-primary m-t-20"></Button>
                 <Label v-show="isLoggingIn" text="Forgot your password?" class="login-label" @tap="forgotPassword"></Label>
             </StackLayout>
 
@@ -39,7 +39,7 @@
 
 <script>
     import Clock from "./Clock";
-
+    import axios from 'axios';
     const userService = {
         register(user) {
             return Promise.resolve(user);
@@ -56,12 +56,39 @@
         data() {
             return {
                 isLoggingIn: true,
+                wrongpassoremail : false,
+                token : '',
                 user: {
-                    email: "batman.gothman@epitech.eu",
+                    email: "administrator@email.fr",
+                    password : 'password',
                 }
+
             };
         },
         methods: {
+            created: function (event) {
+                let user = this.user;
+                axios.post(`http://3.84.184.79:3000/users/sign_in`,  {
+                    user
+                })
+                    .then(response => {
+                        if (response.status === 200) {
+                            console.log(response);
+                            console.log(response.data.token);
+                            this.wrongpassoremail = false;
+                            const appSettings = require("application-settings");
+                            appSettings.setItem('user', response.data.user);
+                            appSettings.setItem('jwt',response.data.token);
+                            if (appSettings.getString('jwt') != null){
+                                this.submit();
+                            }
+                        }
+                    })
+                    .catch(e => {
+                        this.wrongpassoremail = true;
+                        console.log(e);
+                    })
+            },
             toggleForm() {
                 this.isLoggingIn = !this.isLoggingIn;
             },
